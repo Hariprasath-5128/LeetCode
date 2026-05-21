@@ -8,6 +8,9 @@ int max(int a, int b) {
 
 int maxTwoEvents(int** events, int eventsSize, int* eventsColSize) {
 
+    // If we iterate through all element, it will find the Next suitable event through the Binary Search and Using the suffixMax[i], which contains the maximum profit from that index i is used (instead of iterating for all remaining indexes)
+
+
      // Sort events based on start time
     qsort(events, eventsSize, sizeof(int*), cmp);
 
