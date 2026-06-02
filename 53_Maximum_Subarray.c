@@ -1,12 +1,15 @@
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
 int maxSubArray(int* nums, int numsSize) {
-    int sum = 0, max_sum = -100000000000;
-    for(int i = 0; i< numsSize; i++){
-        sum+=nums[i];
-        if(nums[i]>=sum){
-            sum = nums[i];
-        }
-        if(max_sum < sum){
-            max_sum = sum;
-        }
+    int currentSum = nums[0]; // maximum sum ending at current index
+    int ans = nums[0];
+
+    for (int i = 1; i < numsSize; i++) {
+        currentSum = max(nums[i], currentSum + nums[i]);
+        ans = max(ans, currentSum);
     }
-    return max_sum;
+
+    return ans;
+}
