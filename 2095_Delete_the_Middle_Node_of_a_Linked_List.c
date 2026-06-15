@@ -6,28 +6,38 @@
  * };
  */
 struct ListNode* deleteMiddle(struct ListNode* head) {
-    struct ListNode* s = head;
-    int c = 0;
-    while(s!=NULL){
-        c++;
-        s = s->next;
-    }
-    s = head;
-    if(c==1){
-        struct ListNode* temp1 = head;
-        head = head->next;
-        free(temp1);
-        return head;
-    }
-    int mid = (int)(c/2);
 
-    while(mid-1!=0){
-        s = s->next;
-        mid--;
+    if(head == NULL)
+        return NULL;
+
+    if(head->next == NULL){
+        free(head);
+        return NULL;
     }
-    struct ListNode* temp = s->next;
-    
-    s->next = s->next->next;
-    free(temp);
+
+    struct ListNode* ptr = head;
+
+    int len = 0;
+
+    //Finding the length of list
+    while(ptr != NULL){
+        len++;
+        ptr = ptr->next;
+    }
+
+    ptr = head;
+
+    int mid = len / 2;
+
+    while(mid - 1 > 0){
+        mid--;
+        ptr = ptr->next;
+    }
+
+    struct ListNode* toDelete = ptr->next;
+    ptr->next = toDelete->next;
+
+    free(toDelete);
+
     return head;
 }
