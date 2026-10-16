@@ -29,3 +29,5 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
         return result[mid];
     }
 }
+
+//TC: O(m+n) ; not optimised; use the binary search for the optimised complexity of O(log(min(m,n)))
