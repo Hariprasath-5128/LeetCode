@@ -1,30 +1,26 @@
+import java.util.Arrays;
+
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        int ptr1 = 0;
-        int ptr2 = 0;
+        int l1 = nums1.length;
+        int l2 = nums2.length;
+
+        int i = 0, j = 0, k = 0;
+
         Arrays.sort(nums1);
         Arrays.sort(nums2);
-        ArrayList<Integer> resultList = new ArrayList<>();
 
-        while(ptr1 < nums1.length && ptr2 < nums2.length){
-            if(nums1[ptr1] == nums2[ptr2]){
-                resultList.add(nums1[ptr1]);
-                ptr1++;
-                ptr2++;
+        while (i < l1 && j < l2) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                nums1[k++] = nums1[i++];
+                j++;
             }
-            else if(nums1[ptr1] > nums2[ptr2]){
-                ptr2++;
-            }
-            else
-                ptr1++;
         }
 
-        // Convert ArrayList to a primitive int array
-        int[] result = new int[resultList.size()];
-        for (int i = 0; i < resultList.size(); i++) {
-            result[i] = resultList.get(i);
-        }
-        
-        return result;
+        return Arrays.copyOfRange(nums1, 0, k);
     }
 }
